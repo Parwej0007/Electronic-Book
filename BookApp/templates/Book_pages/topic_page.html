@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <br>
+
+     <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active"><a href="{% url 'home' %}"> BOOKS </a></li>
+         <li class="breadcrumb-item active"><a href="{% url 'create_topic' book.pk %}"> <b>CREATE TOPIC FOR</b> --><b>{{ book.book_name.upper }}</b> </a></li>
+      </ol>
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">-</th>
+            <th scope="col">TOPIC NAME</th>
+            <th scope="col">POST</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for topic in all_topic %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}.</th>
+                <td><a href="{% url 'post' topic.pk %}">{{ topic.topic_name }} </a> <small class="text-muted d-block">
+                    {{ topic.description }} </small> </td>
+
+                <td> <p style="color:#b21f2d">{{ topic.post_count }} </p></td>
+{#                <td class="btn btn-danger" type="submit"> <a href="{% url 'delete_topic' topic.pk %}"> Delete </a></td>#}
+                <td class="btn btn-dark" type="submit"> <a href="{% url 'update_topic' topic.pk %}"> Update </a></td>
+            </tr>
+{#            <button type="submit" class="btn btn-success"><a href="#">Submit</a></button>#}
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

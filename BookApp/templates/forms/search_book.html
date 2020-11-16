@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <br><br><br>
+{#    <ol class="breadcrumb my-4">#}
+{#        <li class="breadcrumb-item active"> Book </li>#}
+{#    </ol>#}
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">-</th>
+            <th scope="col">BOOK NAME</th>
+            <th scope="col">TOPICS</th>
+            <th scope="col">POST</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if book1 %}
+            {% for book in book1 %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}.</th>
+                    <td><a href="{% url 'topic' book.pk %}">  {{ book.book_name.upper }} </a> <small class="text-muted d-block">
+                        {{ book.description }} </small> </td>
+
+                    <td> {{  book.topic_count }} </td>
+                    <td> {{ book.post_count }} </td>
+                    <td><button class="btn btn-danger" value="submit"> <a href="{% url 'delete_book' book.pk  %}"> Delete</a></button> </td>
+                </tr>
+            {% endfor %}
+    {% endif %}
+
+        </tbody>
+    </table>
+    {% if not book1 %}
+        <br><br>
+        <b style="color: #b21f2d"> Search Book "<u style="color: #005cbf">{{ not_found.capitalize }}</u>" is not found in Database !</b>
+    {% endif %}
+{% endblock %}

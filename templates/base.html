@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+    <!-- css -->
+    <link rel="stylesheet" href={% static 'css/bootstrap.min.css' %}>
+</head>
+<body>
+<!-- Nevigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'home' %}">Dashboard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'about' %}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+    </ul>
+    <form  method="get" action="/home/search/" >
+{#        {% csrf_token %}#}
+        <label for="search">
+            <input class="form-control my-2 my-sm-0" type="text" placeholder="Search Book" id="search" name="search">
+        </label>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+    </form>
+  </div>
+</nav>
+<!--close Navigation bar-->
+
+<div class="container">
+    {% block body %}
+
+    {% endblock %}
+</div>
+
+
+<!-- js/ jquery-->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

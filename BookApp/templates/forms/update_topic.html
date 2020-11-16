@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+
+{#      <ol class="breadcrumb my-4">#}
+{#        <li class="breadcrumb-item active"><a href="{% url 'home' %}"> Book - {{ book.book_name.upper }} </a></li>#}
+{#        <li class="breadcrumb-item active"><a href="{% url 'topic' book.pk %}"> TOPICS </a></li>#}
+{#      </ol>#}
+
+
+    <div class="container">
+        <form method="post" action="{% url 'update_topic' topic.pk %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="topic">TOPIC NAME:</label>
+                <input type="text" class="form-control" id="topic" name="topic" value="{{ topic.topic_name }}">
+            </div>
+            <div class="form-group">
+            <label for="description">TOPIC DESCRIPTION:</label>
+            <input type="text" class="form-control" id="description" name="description" value="{{ topic.description }}">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <br><br><br>
+{#    <ol class="breadcrumb my-4">#}
+{#        <li class="breadcrumb-item active"> Book </li>#}
+{#    </ol>#}
+    <table class="table">
+        <thead class="thead-light">
+        <th><a href="{% url 'create_book' %}"> CREATE BOOKS</a> </th>
+        <tr>
+            <th scope="col">-</th>
+            <th scope="col">BOOK NAME</th>
+            <th scope="col">TOPICS</th>
+            <th scope="col">POST</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in all_book %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}.</th>
+                <td><a href="{% url 'topic' book.pk %}">  {{ book.book_name.upper }} </a> <small class="text-muted d-block">
+                    {{ book.description }} </small> </td>
+
+                <td> {{  book.topic_count }} </td>
+                <td> {{ book.post_count }} </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

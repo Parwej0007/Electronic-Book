@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+
+
+    <div class="container">
+        <form method="post" action="{% url 'update_post' post.pk %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="heading">HEADING:</label>
+                <input type="text" class="form-control" id="heading" name="heading" value="{{ post.heading }}">
+            </div>
+            <div class="form-group">
+            <label for="content">CONTENT:</label>
+            <input type="text" class="form-control" id="content" name="content" value="{{ post.content }}">
+            </div>
+            <button type="submit" class="btn btn-success">Update</button>
+
+        </form>
+    </div>
+
+
+{% endblock %}

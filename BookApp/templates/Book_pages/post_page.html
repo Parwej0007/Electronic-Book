@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<br>
+      <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active"><a href="{% url 'home' %}"> Book - {{ topic.book.book_name.upper }} </a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'topic' topic.book.pk %}"> Topic - {{ topic.topic_name.upper }} </a></li>
+          <li class="breadcrumb-item active"><a href="{% url 'create_post' topic.pk %}"><b>CREATE POST FOR</b> --><b>{{ topic.topic_name.upper }} </b></a></li>
+      </ol>
+
+    {% for post1 in post_all %}
+        <div class="card" style="width: 50rem; border-color: #1e7e34">
+          <div class="card-body">
+            <h5 class="text-primary"> {{ post1.heading }} </h5>
+            <p class="text-black">{{ post1.content }}.</p>
+          </div>
+        </div>
+        <div class="btn btn-danger" type="submit" style="float: inside"><a href="{% url 'delete_post' post1.pk %}"> Delete </a></div>
+        <div class="btn btn-dark" type="submit" style="float: inside"><a href="{% url 'update_post' post1.pk %}"> Update </a></div><br>
+        <br>
+
+    {% endfor %}
+
+{% endblock %}

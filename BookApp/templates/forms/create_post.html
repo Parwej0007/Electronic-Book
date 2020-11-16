@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+
+      <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active"><a href="{% url 'home' %}"> {{ topic.book.book_name.upper }} </a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'topic' topic.book.pk %}"> TOPICS </a></li>
+        <li class="breadcrumb-item active"><a href="{% url 'post' topic.pk %}"> POSTS </a></li>
+      </ol>
+
+
+    <div class="container">
+        <h3>Create posts for {{ topic.topic_name.capitalize }}: </h3>
+        <form method="post" action="{% url 'insert_post' topic.pk %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="heading">POST NAME:</label>
+                <input type="text" class="form-control" id="heading" name="heading">
+            </div>
+            <div class="form-group">
+            <label for="content">POST CONTENT:</label>
+                <textarea class="form-control" id="content" rows="5" name="content"> </textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+    </div>
+
+    
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<br>
+
+{#      <ol class="breadcrumb my-4">#}
+{#        <li class="breadcrumb-item active"><a href="{% url 'home' %}"> {{ topic.book.book_name.upper }} </a></li>#}
+{#        <li class="breadcrumb-item active"><a href="{% url 'topic' topic.book.pk %}"> TOPICS </a></li>#}
+{#        <li class="breadcrumb-item active"><a href="{% url 'post' topic.pk %}"> POSTS </a></li>#}
+{#      </ol>#}
+
+
+    <div class="container">
+        <h3>Create Books</h3>
+        <form method="post" action="{% url 'create_book' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="book_name">BOOK NAME:</label>
+                <input type="text" class="form-control" id="book_name" name="book_name">
+            </div>
+            <div class="form-group">
+            <label for="book_desc">BOOK DESCRIPTION:</label>
+                <textarea class="form-control" id="book_desc" rows="5" name="book_desc"> </textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+    </div>
+
+
+{% endblock %}
